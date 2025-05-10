@@ -1,0 +1,48 @@
+:root {
+	--header-height: 3.5rem;
+
+	--container-width: 1170px;
+	--container-padding-x: 1rem;
+
+	--hue: 200;
+	--first-color: hsl(var(--hue) 24% 32%);
+	--title-color: hsl(var(--hue) 4% 15%);
+	--container-color: hsl(var(--hue) 25% 90%);
+	--body-color: hsl(var(--hue) 25% 30%);
+
+	--body-font: 'Inter', sans-serif;
+
+	--border-radius-sm: 0.25rem;
+	--border-radius-md: 0.5rem;
+
+	--transition-default: all 0.1s ease-in-out;
+	--shadow: hsl(var(--hue), 4%, 5%, 40%);
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	font-family: var(--body-font);
+	color: var(--title-color);
+	transition: var(--transition-default);
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	text-decoration: none;
+	color: var(--title-color);
+}
