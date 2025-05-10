@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { Loader } from '../../components/Loader/Loader';
 import { PAGINATION_LIMIT } from '../../constants';
 import { request } from '../../utils/request';
 import { Pagination, PostCard, Search } from './components';
 import { debounce } from './utils';
 
 const MainContainer = ({ className }) => {
+	const [isLoading, setIsLoading] = useState(true);
+
 	const [posts, setPosts] = useState([]);
 	const [page, setPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
@@ -18,6 +21,7 @@ const MainContainer = ({ className }) => {
 		).then(({ data: { posts, lastPage } }) => {
 			setPosts(posts);
 			setLastPage(lastPage);
+			setIsLoading(false);
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [page, shouldSearch]);
@@ -29,7 +33,9 @@ const MainContainer = ({ className }) => {
 		startDelayedSearch(!shouldSearch);
 	};
 
-	return (
+	return isLoading ? (
+		<Loader />
+	) : (
 		<div className={className}>
 			<div className="post-header">
 				<Search searchPhrase={searchPhrase} onChange={onSearch} />
