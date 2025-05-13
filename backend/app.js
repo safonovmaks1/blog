@@ -14,6 +14,10 @@ app.use(cookieParser(), express.json());
 
 app.use('/api', routes);
 
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve('..', 'frontend', 'build', 'index.html'));
+});
+
 mongoose
 	.connect(process.env.DB_CONNECTION_STRING)
 	.then(() => {
